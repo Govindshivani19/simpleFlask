@@ -31,51 +31,51 @@
             <input class="btn btn-primary submit" type="submit" name="" value="Submit"/>
         </div>
     </div>
-    <div id="outer">
-        <div id="inner"><h4><center>Please upload the file to fetch the data</center></h4></div>
-    </div>
-<!--    <div>-->
-<!--        <h3>-->
-<!--            Please upload the file to fetch the data-->
-<!--        </h3>-->
-<!--    </div>-->
 </form>
 
-<!--&lt;!&ndash;    <script src="script.js"></script>&ndash;&gt;-->
-<!--<div class="myBox scrollbar-primary" >-->
-<!--<div class="col-md-8">-->
-<!--    <table class="table table-stripped">-->
-<!--        <tr class="header">-->
-<!--            {% for header in headings %}-->
-<!--            <th> {{ header }}</th>-->
-<!--            {% endfor %}-->
-<!--        </tr>-->
+<!--    <script src="script.js"></script>-->
+<div class="myBox scrollbar-primary" >
+<div class="col-md-8">
+    <table class="table table-stripped">
+        <tr class="header">
+            {% for header in headings %}
+            <th> {{ header }}</th>
+            {% endfor %}
+        </tr>
 
-<!--        {% for row in data %}-->
-<!--        <tr class="rows">-->
-<!--            {% for cell in row %}-->
-<!--            <td>-->
-<!--                {{ cell }}-->
-<!--            </td>-->
-<!--            {% endfor %}-->
-<!--        </tr>-->
-<!--        {% endfor %}-->
+        {% for row in data %}
+        <tr class="rows">
+            {% for cell in row %}
+            <td>
+                {{ cell }}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
 
-<!--    </table>-->
-<!--    &lt;!&ndash;      {{ data | safe}}&ndash;&gt;-->
-<!--</div>-->
-<!--</div>-->
-<!--<div>-->
+    </table>
+    <!--      {{ data | safe}}-->
+</div>
+</div>
+<div>
+<form class="" action="predict_data" method="POST" enctype="multipart/form-data">
+        <div class="col-md-3">
+            <select class="selectprediction">
+                <option>SVM</option>
+                <option disabled>Random Forest</option>
+            </select>
+    <button class="predictbtn">
+        Predict
+    </button>
+    </div>
+</form>
 
-<!--        <select class="selectprediction">-->
-<!--            <option>SVM</option>-->
-<!--            <option disabled>Random Forest</option>-->
-<!--        </select>-->
-<!--<button class="predictbtn">-->
-<!--    Predict-->
-<!--</button>-->
 
-<!--</div>-->
+
+
+
+
+</div>
 
 
 </body>
