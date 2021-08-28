@@ -16,31 +16,28 @@
     />
 
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-    <link rel="stylesheet" href="./static/style.css"/>
+    <link rel="stylesheet" href="/static/style.css"/>
     <title>Defect Predictor</title>
-
-</head>
+    </head>
 <body>
-<div class="col-md-8">
-    <table class="table table-stripped">
-        <tr class="header">
-            {% for header in headings %}
-            <th> {{ header }}</th>
-            {% endfor %}
-        </tr>
-
-        {% for row in data %}
-        <tr class="rows">
-            {% for cell in row %}
-            <td>
-                {{ cell }}
-            </td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-
-    </table>
-    <!--      {{ data | safe}}-->
+<form class="" action="read-excel" method="POST" enctype="multipart/form-data">
+    <div class="col-md-3">
+        <div class="drag-area">
+            <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+            <header>Drag & Drop to Upload File</header>
+            <span>OR</span>
+            <!--          <button>Browse File</button>-->
+            <input type="file" id= "abc" name="upload-file" value="Browse File" class="upload"/>
+            <input class="btn btn-primary submit" type="submit" name="" value="Submit"/>
+        </div>
+    </div>
+</form>
+<div class = "Score">
+    <section class="bar-graph bar-graph-horizontal bar-graph-one">
+      <div class="bar-one">
+        <span class="year">Score</span>
+        <div class="bar" data-percentage={{score}}></div>
+      </div>
+    </section>
 </div>
 </body>
-</html>
