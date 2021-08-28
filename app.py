@@ -89,6 +89,7 @@ def data():
 def predict(file_name):
     if request.method == 'POST':
         print(file_name)
+        arr_dataset_2 = []
         dataset = pd.read_csv(file_name)
         le = LabelEncoder()
         dataset.Product = le.fit_transform(dataset.Product)
@@ -113,7 +114,7 @@ def predict(file_name):
         report = classification_report(Y_Test, predict)
         report_data = []
         lines = report.split('\n')
-        count = 0
+        count = 1
         for line in lines:
             row = {}
             if len(line) > 0:
@@ -122,71 +123,98 @@ def predict(file_name):
                 print(count, len(row_data))
                 print("============================")
                 if len(row_data) > 0:
-                    row['class'] = row_data[0]
-                    # if count != 1 and count <= len(lines)-3:
-                    #     precision = row_data[1].split()
-                    #     if len(precision) > 0:
-                    #         precision_data = precision[0]
-                    #     else:
-                    #         precision_data = ""
-                    #     row['precision'] = precision_data
-                    #
-                    #     recall = row_data[3].split()
-                    #     if len(recall) > 0:
-                    #         recall_data = recall[0]
-                    #     else:
-                    #         recall_data = ""
-                    #     row['recall'] = recall_data
-                    #
-                    #     print(row_data[4].split())
-                    #     f1_score = row_data[3].split()
-                    #     if len(f1_score) > 0:
-                    #         f1_score_data = f1_score[0]
-                    #     else:
-                    #         f1_score_data = ""
-                    #     row['f1_score'] = f1_score_data
-                    #
-                    #     support = row_data[5].split()
-                    #     if len(support) > 0:
-                    #         support_data = support[0]
-                    #     else:
-                    #         support_data = ""
-                    #     row['support'] = support_data
-                    # elif count != 1 and count >= len(lines)-3:
-                    #     precision = row_data[1].split()
-                    #     if len(precision) > 0:
-                    #         precision_data = precision[0]
-                    #     else:
-                    #         precision_data = ""
-                    #     row['precision'] = precision_data
-                    #
-                    #     recall = row_data[2].split()
-                    #     if len(recall) > 0:
-                    #         recall_data = recall[0]
-                    #     else:
-                    #         recall_data = ""
-                    #     row['recall'] = recall_data
-                    #
-                    #     print(row_data[3].split())
-                    #     f1_score = row_data[3].split()
-                    #     if len(f1_score) > 0:
-                    #         f1_score_data = f1_score[0]
-                    #     else:
-                    #         f1_score_data = ""
-                    #     row['f1_score'] = f1_score_data
-                    #
-                    #     support = row_data[4].split()
-                    #     if len(support) > 0:
-                    #         support_data = support[0]
-                    #     else:
-                    #         support_data = ""
-                    #     row['support'] = support_data
+                    if count != 1:
+                        if len(row_data) == 6:
+                            if len(row_data[0]) > 0:
+                                row['class'] = row_data[0]
+                            else:
+                                row['class'] = None
+                            num = row_data[1].split()
+                            if len(num)>0:
+                                num_data = num[0]
+                            else:
+                                num_data = None
+                            row['num_data'] = num_data
+
+                            precision = row_data[2].split()
+                            if len(precision) > 0:
+                                precision_data = precision[0]
+                            else:
+                                precision_data = None
+                            row['precision'] = precision_data
+
+                            recall = row_data[3].split()
+                            if len(recall) > 0:
+                                recall_data = recall[0]
+                            else:
+                                recall_data = None
+                            row['recall'] = recall_data
+
+                            f1_score = row_data[4].split()
+                            if len(f1_score) > 0:
+                                f1_score_data = f1_score[0]
+                            else:
+                                f1_score_data = None
+                            row['f1_score'] = f1_score_data
+
+                            support = row_data[5].split()
+                            if len(support) > 0:
+                                support_data = support[0]
+                            else:
+                                support_data = None
+                            row['support'] = support_data
+                        elif len(row_data) == 5:
+                            if len(row_data[0]) > 0:
+                                row['class'] = row_data[0]
+                            else:
+                                row['class'] = None
+                            num_data = None
+                            row['num_data'] = num_data
+
+                            precision = row_data[1].split()
+                            if len(precision) > 0:
+                                precision_data = precision[0]
+                            else:
+                                precision_data = None
+                            row['precision'] = precision_data
+
+                            recall = row_data[2].split()
+                            if len(recall) > 0:
+                                recall_data = recall[0]
+                            else:
+                                recall_data = None
+                            row['recall'] = recall_data
+
+                            f1_score = row_data[3].split()
+                            if len(f1_score) > 0:
+                                f1_score_data = f1_score[0]
+                            else:
+                                f1_score_data = None
+                            row['f1_score'] = f1_score_data
+
+                            support = row_data[4].split()
+                            if len(support) > 0:
+                                support_data = support[0]
+                            else:
+                                support_data = None
+                            row['support'] = support_data
+
                     count = count+1
-                    report_data.append(row)
-        print(report_data)
+                    if len(row)>0:
+                        report_data.append(row)
+        print(len(report_data), report_data)
         dataframe = pd.DataFrame.from_dict(report_data)
         dataframe.to_csv('classification_report.csv', index=False)
-        return render_template('predict.html', score=score2*100)
+
+        data_csv = pd.read_csv('classification_report.csv')
+        headings = data_csv.columns.values
+        for index, rows in data_csv.iterrows():
+            print(index, rows)
+            arr_dataset_2.append(rows.tolist())
+
+        data_set = arr_dataset_2
+        # os.remove(file.filename)
+        return render_template('predict.html', score=score2*100, headings=headings, data=data_set)
 
 
 if __name__ == '__main__':

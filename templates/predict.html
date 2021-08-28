@@ -32,12 +32,38 @@
         </div>
     </div>
 </form>
-<div class = "Score">
+<div class="score_data">
     <section class="bar-graph bar-graph-horizontal bar-graph-one">
       <div class="bar-one">
-        <span class="year">Score</span>
+        <span class="score">Score</span>
         <div class="bar" data-percentage={{score}}></div>
       </div>
     </section>
 </div>
+
+<!--    <script src="script.js"></script>-->
+<div class="myBox scrollbar-primary" >
+<div class="col-md-8">
+    <table class="table table-stripped">
+        <tr class="header">
+            {% for header in headings %}
+            <th> {{ header }}</th>
+            {% endfor %}
+        </tr>
+
+        {% for row in data %}
+        <tr class="rows">
+            {% for cell in row %}
+            <td>
+                {{ cell }}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+    </table>
+    <!--      {{ data | safe}}-->
+</div>
+</div>
 </body>
+</html>

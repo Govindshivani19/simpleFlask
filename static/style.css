@@ -159,8 +159,8 @@ option:hover {
   width:100%
 }
 
-.score{
-margin-right: 0px;
+.score_data{
+margin-center: 500px;
 display : flex;
 }
 
@@ -170,7 +170,7 @@ body {
 }
 
 /* Bar Graph Horizontal */
-.bar-graph .year {
+.bar-graph .score {
   -webkit-animation: fade-in-text 2.2s 0.1s forwards;
   -moz-animation: fade-in-text 2.2s 0.1s forwards;
   animation: fade-in-text 2.2s 0.1s forwards;
@@ -187,7 +187,7 @@ body {
   width: 100%;
 }
 
-.bar-graph-horizontal .year {
+.bar-graph-horizontal .score {
   float: left;
   margin-top: 18px;
   width: 50px;
