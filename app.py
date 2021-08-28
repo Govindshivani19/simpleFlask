@@ -1,12 +1,15 @@
 import os
+
+import ensemble
 from flask import Flask, render_template, request
 import pandas as pd
 import numpy as np
 import missingno as msno
 from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
-from sklearn import svm
-from sklearn.preprocessing import OneHotEncoder, LabelEncoder, ensemble
+from sklearn import svm, __all__
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
+
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
@@ -46,8 +49,11 @@ def data():
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    if request.method == 'GET':
-        dataset = pd.read_csv("C:\\Users\\Lenovo\\Downloads\\a.csv")
+    if request.method == 'POST':
+        file = request.files['']
+        file.save(file.filename)
+        extension_data = os.path.splitext(file.filename)
+        dataset = pd.read_csv(file)
         le = LabelEncoder()
         dataset.Product = le.fit_transform(dataset.Product)
         dataset.Component = le.fit_transform(dataset.Component)
