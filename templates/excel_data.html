@@ -34,28 +34,28 @@
 </form>
 
 <!--    <script src="script.js"></script>-->
-<div class="myBox scrollbar-primary" >
-<div class="col-md-8">
-    <table class="table table-stripped">
-        <tr class="header">
-            {% for header in headings %}
-            <th> {{ header }}</th>
-            {% endfor %}
-        </tr>
+<div class="myBox scrollbar-primary">
+    <div class="col-md-8">
+        <table class="table table-stripped">
+            <tr class="header">
+                {% for header in headings %}
+                <th> {{ header }}</th>
+                {% endfor %}
+            </tr>
 
-        {% for row in data %}
-        <tr class="rows">
-            {% for cell in row %}
-            <td>
-                {{ cell }}
-            </td>
+            {% for row in data %}
+            <tr class="rows">
+                {% for cell in row %}
+                <td>
+                    {{ cell }}
+                </td>
+                {% endfor %}
+            </tr>
             {% endfor %}
-        </tr>
-        {% endfor %}
 
-    </table>
-    <!--      {{ data | safe}}-->
-</div>
+        </table>
+        <!--      {{ data | safe}}-->
+    </div>
 </div>
 <div>
     <form action="{{ url_for('predict', file_name=file_name)}}" method="post">
@@ -66,18 +66,26 @@
                     <td style="height:100px;width:5000px">
                         <select class="form-control" id="predict" name="predict">
                             <option value="none" selected disabled hidden>Select an a value</option>
-                            <option>SVM</option>
+                            <option>Gradient Booster</option>
+                            <option disabled>SVM</option>
                             <option disabled>Random Forest</option>
                         </select>
                     </td>
                     <td>
-                <a class="form-group">
-                    <button class="btn btn-secondary btn-sm mt-1 mb-1" type="submit">Predict</button></a></td>
-                <td><label for="file_name">selected file:</label>
-                        <input type="text" id = "file_name" value={{file_name}} disabled></td></tr>
+                        <a class="form-group">
+                            <button class="btn btn-secondary btn-sm mt-1 mb-1" type="submit">Predict</button>
+                        </a></td>
+<!--                    <td>-->
+<!--                        <label for="file_name">selected file:</label>-->
+<!--                        <input type="text" id="file_name" value={{file_name}} disabled>-->
+<!--                    </td>-->
+                </tr>
             </table>
         </div>
     </form>
 </div>
 </body>
 </html>
+
+
+

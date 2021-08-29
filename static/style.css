@@ -182,15 +182,18 @@ body {
 }
 
 .bar-graph-horizontal > div {
-  float: left;
-  margin-bottom: 8px;
-  width: 100%;
+    float: right;
+    margin-bottom: 16px;
+    width: 491%;
+    margin-right: 1px;
+    left: 216px;
+    position: relative;
 }
 
 .bar-graph-horizontal .score {
-  float: left;
-  margin-top: 18px;
-  width: 50px;
+    float: left;
+    width: 612px;
+    left: 8px;
 }
 
 .bar-graph-horizontal .bar {
@@ -215,7 +218,7 @@ body {
 }
 
 .bar-graph-one .bar-one .bar {
-  background-color: #2e515f;
+  background-color: #008AD8;
   -webkit-animation: show-bar-one 1.2s 0.1s forwards;
   -moz-animation: show-bar-one 1.2s 0.1s forwards;
   animation: show-bar-one 1.2s 0.1s forwards;

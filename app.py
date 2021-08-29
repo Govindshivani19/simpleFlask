@@ -97,10 +97,11 @@ def predict(file_name):
         dataset.Status = le.fit_transform(dataset.Status)
         dataset.Assignee = le.fit_transform(dataset.Assignee)
         dataset.Release = le.fit_transform(dataset.Release)
+        dataset.Severity = le.fit_transform(dataset.Severity)
         dataset.isnull().sum()
-        columns_of_sheet = dataset[['Product', 'Component', 'Status', 'Release', 'Severity']]
+        columns_of_sheet = dataset[['Product', 'Assignee', 'Status', 'Release', 'Severity']]
         X = np.asarray(columns_of_sheet)
-        Y = np.asarray(dataset['Assignee'])
+        Y = np.asarray(dataset['Component'])
         X_Train, X_Test, Y_Train, Y_Test = train_test_split(X, Y, test_size=0.25, random_state=0)
         sc_X = StandardScaler()
         X_Train = sc_X.fit_transform(X_Train)
@@ -126,78 +127,78 @@ def predict(file_name):
                     if count != 1:
                         if len(row_data) == 6:
                             if len(row_data[0]) > 0:
-                                row['class'] = row_data[0]
+                                row['Class'] = row_data[0]
                             else:
-                                row['class'] = None
+                                row['Class'] = None
                             num = row_data[1].split()
                             if len(num)>0:
-                                num_data = num[0]
+                                Num_data = num[0]
                             else:
-                                num_data = None
-                            row['num_data'] = num_data
+                                Num_data = None
+                            row['Num_data'] = Num_data
 
-                            precision = row_data[2].split()
-                            if len(precision) > 0:
-                                precision_data = precision[0]
+                            Precision = row_data[2].split()
+                            if len(Precision) > 0:
+                                Precision_data = Precision[0]
                             else:
-                                precision_data = None
-                            row['precision'] = precision_data
+                                Precision = None
+                            row['Precision'] = Precision_data
 
-                            recall = row_data[3].split()
-                            if len(recall) > 0:
-                                recall_data = recall[0]
+                            Recall = row_data[3].split()
+                            if len(Recall) > 0:
+                                Recall_data = Recall[0]
                             else:
-                                recall_data = None
-                            row['recall'] = recall_data
+                                Recall_data = None
+                            row['Recall'] = Recall_data
 
-                            f1_score = row_data[4].split()
-                            if len(f1_score) > 0:
-                                f1_score_data = f1_score[0]
+                            F1_score = row_data[4].split()
+                            if len(F1_score) > 0:
+                                F1_score_data = F1_score[0]
                             else:
-                                f1_score_data = None
-                            row['f1_score'] = f1_score_data
+                                F1_score_data = None
+                            row['F1_score'] = F1_score_data
 
-                            support = row_data[5].split()
-                            if len(support) > 0:
-                                support_data = support[0]
+                            Support = row_data[5].split()
+                            if len(Support) > 0:
+                                Support_data = Support[0]
                             else:
-                                support_data = None
-                            row['support'] = support_data
+                                Support_data = None
+                            row['Support'] = Support_data
                         elif len(row_data) == 5:
                             if len(row_data[0]) > 0:
-                                row['class'] = row_data[0]
+                                row['Class'] = row_data[0]
                             else:
-                                row['class'] = None
-                            num_data = None
-                            row['num_data'] = num_data
+                                row['Class'] = None
+                            Num_data = None
+                            row['Num_data'] = Num_data
 
-                            precision = row_data[1].split()
-                            if len(precision) > 0:
-                                precision_data = precision[0]
+                            Precision = row_data[1].split()
+                            if len(Precision) > 0:
+                                Precision_data = Precision[0]
                             else:
-                                precision_data = None
-                            row['precision'] = precision_data
+                                Precision_data = None
+                            row['Precision'] = Precision_data
 
-                            recall = row_data[2].split()
-                            if len(recall) > 0:
-                                recall_data = recall[0]
+                            Recall = row_data[2].split()
+                            if len(Recall) > 0:
+                                Recall_data = Recall[0]
                             else:
-                                recall_data = None
-                            row['recall'] = recall_data
+                                Recall = None
+                            row['Recall'] = Recall
 
-                            f1_score = row_data[3].split()
-                            if len(f1_score) > 0:
-                                f1_score_data = f1_score[0]
+                            F1_score = row_data[3].split()
+                            if len(F1_score) > 0:
+                                F1_score_data = F1_score[0]
                             else:
-                                f1_score_data = None
-                            row['f1_score'] = f1_score_data
+                                F1_score_data = None
+                            row['F1_score'] = F1_score_data
 
-                            support = row_data[4].split()
-                            if len(support) > 0:
-                                support_data = support[0]
+                            Support = row_data[4].split()
+                            if len(Support) > 0:
+                                Support_data = Support[0]
                             else:
-                                support_data = None
-                            row['support'] = support_data
+                                Support_data = None
+                            row['Support'] = Support_data
 
                     count = count+1
                     if len(row)>0:
