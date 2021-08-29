@@ -61,9 +61,11 @@
     <form action="{{ url_for('predict', file_name=file_name)}}" method="post">
         <div class="form-group">
             <label class="sr-only" for="predict"></label>
-            <table>
+            <table class="dropdownValues">
                 <tr>
+
                     <td style="height:100px;width:5000px">
+
                         <select class="form-control" id="predict" name="predict">
                             <option value="none" selected disabled hidden>Select an a value</option>
                             <option>Gradient Booster</option>
@@ -72,13 +74,17 @@
                         </select>
                     </td>
                     <td>
+
                         <a class="form-group">
                             <button class="btn btn-secondary btn-sm mt-1 mb-1" type="submit">Predict</button>
-                        </a></td>
+                        </a>
+
+                    </td>
 <!--                    <td>-->
 <!--                        <label for="file_name">selected file:</label>-->
 <!--                        <input type="text" id="file_name" value={{file_name}} disabled>-->
 <!--                    </td>-->
+
                 </tr>
             </table>
         </div>
