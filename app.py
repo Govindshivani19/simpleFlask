@@ -90,7 +90,11 @@ def predict(file_name):
     if request.method == 'POST':
         print(file_name)
         arr_dataset_2 = []
-        dataset = pd.read_csv(file_name)
+        extension_data = os.path.splitext(file_name)
+        if extension_data[1] == ".csv":
+            dataset = pd.read_csv(file_name)
+        elif extension_data[1] == ".xlsx":
+            dataset = pd.read_excel(file_name)
         le = LabelEncoder()
         dataset.Product = le.fit_transform(dataset.Product)
         dataset.Component = le.fit_transform(dataset.Component)
@@ -214,7 +218,7 @@ def predict(file_name):
             arr_dataset_2.append(rows.tolist())
 
         data_set = arr_dataset_2
-        # os.remove(file.filename)
+        #os.remove(file.filename)
         return render_template('predict.html', score=score2*100, headings=headings, data=data_set)
 
 
