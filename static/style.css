@@ -13,7 +13,7 @@ body {
 }
 .col-md-3 {
 
-    background:mediumseagreen;
+    background: linear-gradient(to bottom, #336699, #009999 90%);
     margin-top: -19px;
     left: -12px;
     display: flex;
