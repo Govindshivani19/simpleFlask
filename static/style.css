@@ -198,7 +198,7 @@ body {
 .bar-graph-horizontal .score {
     float: left;
     width: 612px;
-    left: 342px;
+    left: 280px;
 }
 
 .bar-graph-horizontal .bar {
@@ -313,7 +313,7 @@ body {
     line-height: 20px;
     color: #fff;
     text-align: center;
-    background-color: #c26396;
+    background-color: #009999;
     -webkit-box-shadow: inset 0 -1px 0 rgb(0 0 0 / 15%);
     box-shadow: inset 0 -1px 0 rgb(0 0 0 / 15%);
     -webkit-transition: width .6s ease;

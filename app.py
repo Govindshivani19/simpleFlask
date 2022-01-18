@@ -116,6 +116,7 @@ def predict(file_name):
         score2 = g_classifier.score(X_Test, Y_Test)
 
         predict = g_classifier.predict(X_Test)
+        print(predict)
         report = classification_report(Y_Test, predict)
         report_data = []
         lines = report.split('\n')
@@ -124,21 +125,21 @@ def predict(file_name):
             row = {}
             if len(line) > 0:
                 row_data = line.split('      ')
-                print(row_data)
-                print(count, len(row_data))
-                print("============================")
+                # print(row_data)
+                # print(count, len(row_data))
+                # print("============================")
                 if len(row_data) > 0:
                     if count != 1:
                         if len(row_data) == 6:
                             if len(row_data[0]) > 0:
                                 row['Class'] = row_data[0]
                             else:
-                                row['Class'] = None
+                                row['Class'] = '--'
                             num = row_data[1].split()
                             if len(num)>0:
                                 Num_data = num[0]
                             else:
-                                Num_data = None
+                                Num_data = "--"
                             row['Num_data'] = Num_data
 
                             Precision = row_data[2].split()
@@ -207,19 +208,21 @@ def predict(file_name):
                     count = count+1
                     if len(row)>0:
                         report_data.append(row)
-        print(len(report_data), report_data)
+        # print(len(report_data), report_data)
         dataframe = pd.DataFrame.from_dict(report_data)
         dataframe.to_csv('classification_report.csv', index=False)
 
         data_csv = pd.read_csv('classification_report.csv')
         headings = data_csv.columns.values
         for index, rows in data_csv.iterrows():
-            print(index, rows)
+            # print(index, rows)
             arr_dataset_2.append(rows.tolist())
 
         data_set = arr_dataset_2
-        #os.remove(file.filename)
-        return render_template('predict.html', score=score2*100, headings=headings, data=data_set)
+        os.remove(file_name)
+        os.remove('classification_report.csv')
+        score_data = round(score2*100, 2)
+        return render_template('predict.html', score=score_data, headings=headings, data=data_set)
 
 
 if __name__ == '__main__':
